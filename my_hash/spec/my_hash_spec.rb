@@ -20,15 +20,15 @@ describe "MyHash" do
 
   describe "#[] and []=" do
     it "should not find an element that you didn't put in" do
-      expect(@hash["hello"]).to be (false)
-      expect(@hash["bye"]).to be (false)
+      expect(@hash["hello"]).to eq (nil)
+      expect(@hash["bye"]).to eq (nil)
     end
 
     it "should find elements that you did put in" do
       @hash["hello"] = "hey"
       @hash["bye"] = "good bye"
-      expect(@hash["hello"]).to be ("hello")
-      expect(@hash["bye"]).to be ("good bye")
+      expect(@hash["hello"]).to eq("hey")
+      expect(@hash["bye"]).to eq("good bye")
     end
   end
 
