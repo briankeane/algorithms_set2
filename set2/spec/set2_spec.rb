@@ -21,16 +21,44 @@ describe "Set2" do
     end
 
     it "will return an array with all intersecting values" do
-      intersection = Set2.find_intersection([24, 15, 20, 7, 5, 10],[12, 7, 24, 18, 6],[7, 24, 14, 28, 21]) 
+      intersection = Set2.find_intersection([24, 15, 20, 7, 5, 10],[12, 7, 24, 18, 6],[7, 24, 14, 28, 21])
       expect(intersection.include?(7)).to eq(true)
       expect(intersection.include?(24)).to eq(true)
       expect(intersection.size).to eq(2)
     end
-    
+
     it "will not include values that are only present in 2 arrays" do
       expect(Set2.find_intersection([10],[10],[7])).to eq([])
     end
 
+  end
+
+  describe ".find_intersection2" do
+    it "will return empty array for 3 empty arrays" do
+      expect(Set2.find_intersection([],[],[])).to eq([])
+    end
+
+    it "will return empty array for 3 empty arrays with no common elements" do
+      expect(Set2.find_intersection2([5],[6],[7])).to eq([])
+      expect(Set2.find_intersection2([5,10, 15, 20],[6, 12, 18, 24],[7, 14, 21, 28])).to eq([])
+      expect(Set2.find_intersection2([15, 20, 5, 10],[12, 24, 18, 6],[7, 14, 28, 21])).to eq([])
+    end
+
+    it "will return an array with 1 element if that's the only common one" do
+      expect(Set2.find_intersection2([7],[7],[7])).to eq([7])
+      expect(Set2.find_intersection2([15, 20, 7, 5, 10],[12, 7, 24, 18, 6],[7, 14, 28, 21])).to eq([7])
+    end
+
+    it "will return an array with all intersecting values" do
+      intersection = Set2.find_intersection2([24, 15, 20, 7, 5, 10],[12, 7, 24, 18, 6],[7, 24, 14, 28, 21])
+      expect(intersection.include?(7)).to eq(true)
+      expect(intersection.include?(24)).to eq(true)
+      expect(intersection.size).to eq(2)
+    end
+
+    it "will not include values that are only present in 2 arrays" do
+      expect(Set2.find_intersection2([10],[10],[7])).to eq([])
+    end
   end
 
   describe ".find_first_dup" do
@@ -56,5 +84,8 @@ describe "Set2" do
       expect(Set2.find_mode([-1, -1])).to eq(-1)
       expect(Set2.find_mode([5, 10, 15, 20, 5, 10, 10, 5, 10])).to eq(10)
     end
+
+
   end
+
 end
